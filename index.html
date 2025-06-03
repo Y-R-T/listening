@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL 精听助手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>TOEFL 精听助手</h1>
+    </header>
+
+    <main>
+        <section id="audio-manager">
+            <h2>我的听力列表</h2>
+            <div class="upload-container">
+                <label for="audio-upload" class="upload-button">上传新听力音频</label>
+                <input type="file" id="audio-upload" accept="audio/*" style="display: none;">
+            </div>
+            <ul id="audio-list">
+                </ul>
+        </section>
+
+        <section id="player-section">
+            <h2 id="current-audio-title">请先上传或选择一篇听力</h2>
+            <div id="audio-player-container">
+                <audio id="audio-element"></audio>
+                <div id="progress-bar-container">
+                    <div id="seek-bar-tooltip">0:00</div>
+                    <input type="range" id="seek-bar" value="0" min="0" max="100" step="0.1" disabled>
+                    <div id="bookmark-visualization-layer">
+                        </div>
+                </div>
+                <div id="time-display">
+                    <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+                </div>
+                <div id="controls">
+                    <button id="prev-bookmark-btn" title="回到上个记录点 (Ctrl+Shift+P 或 Cmd+Shift+P)">⏮️ 上一记录点</button>
+                    <button id="play-pause-btn" title="播放/暂停 (Space)">▶️ 播放</button>
+                    <button id="set-bookmark-btn" title="设置记录点 (Ctrl+Shift+B 或 Cmd+Shift+B)">📌 设置记录点</button>
+                    <div class="volume-control-container">
+                        <span>🔊</span>
+                        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" title="音量">
+                    </div>
+                </div>
+            </div>
+            <div id="completion-message" style="display:none;">
+                🎉 恭喜！您已完成本篇听力的精听练习！ 🎉
+            </div>
+        </section>
+
+        <section id="instructions">
+            <h2>使用说明</h2>
+            <p>1. 点击 "上传新听力" 或从列表中选择一篇听力。</p>
+            <p>2. 播放音频，在您认为合适的片段末尾按 <strong>Ctrl+Shift+B</strong> (Windows/Linux) / <strong>Cmd+Shift+B</strong> (Mac) 或点击 "设置记录点" 按钮设置记录点。</p>
+            <p>3. 若要重复收听当前片段的开头，按 <strong>Ctrl+Shift+P</strong> (Windows/Linux) / <strong>Cmd+Shift+P</strong> (Mac) 或点击 "上一记录点" 按钮。</p>
+            <p>4. 进度条上会标记您的记录点 (●) 以及已精听的片段 (高亮区域)。</p>
+            <p>5. 完成整篇听力后，会有惊喜提示！</p>
+            <p><em>注意: 快捷键选用 Ctrl+Shift+P/B 是为了尽量避免与浏览器默认快捷键冲突。</em></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> 精听助手. 学习愉快!</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
