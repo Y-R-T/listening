@@ -24,7 +24,7 @@
 
         <section id="player-section">
             <h2 id="current-audio-title">请先上传或选择一篇听力</h2>
-            <div id="audio-player-container">
+            <div id="audio-player-container"> 
                 <audio id="audio-element"></audio>
                 <div id="progress-bar-container">
                     <div id="seek-bar-tooltip">0:00</div>
@@ -39,6 +39,7 @@
                     <button id="prev-bookmark-btn" title="回到上个记录点 (Ctrl+Shift+P 或 Cmd+Shift+P)">⏮️ 上一记录点</button>
                     <button id="play-pause-btn" title="播放/暂停 (Space)">▶️ 播放</button>
                     <button id="set-bookmark-btn" title="设置记录点 (Ctrl+Shift+B 或 Cmd+Shift+B)">📌 设置记录点</button>
+                    <button id="shortcut-mode-btn" title="切换鼠标快捷操作模式">🖱️ 进入快捷模式</button>
                     <div class="volume-control-container">
                         <span>🔊</span>
                         <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" title="音量">
@@ -46,19 +47,30 @@
                 </div>
             </div>
             <div id="completion-message" style="display:none;">
-                🎉 恭喜！您已完成本篇听力的精听练习！ 🎉
+                🎉 Congratulation！您已完成本篇听力的精听练习！ 🎉
             </div>
         </section>
 
         <section id="instructions">
             <h2>使用说明</h2>
-            <p>1. 点击 "上传新听力" 或从列表中选择一篇听力。</p>
-            <p>2. 播放音频，在您认为合适的片段末尾按 <strong>Ctrl+Shift+B</strong> (Windows/Linux) / <strong>Cmd+Shift+B</strong> (Mac) 或点击 "设置记录点" 按钮设置记录点。</p>
-            <p>3. 若要重复收听当前片段的开头，按 <strong>Ctrl+Shift+P</strong> (Windows/Linux) / <strong>Cmd+Shift+P</strong> (Mac) 或点击 "上一记录点" 按钮。</p>
+            <p>1. 点击 "上传新听力" 或从列表中选择一篇听力 (若从列表选择，可能需重新上传文件以播放)。</p>
+            <p>2. 键盘快捷键：
+                <ul>
+                    <li><strong>播放/暂停:</strong> Space (空格键)</li>
+                    <li><strong>设置记录点:</strong> Ctrl+Shift+B (Win/Linux) / Cmd+Shift+B (Mac)</li>
+                    <li><strong>回到上个记录点:</strong> Ctrl+Shift+P (Win/Linux) / Cmd+Shift+P (Mac)</li>
+                </ul>
+            </p>
+            <p>3. 鼠标快捷模式：
+                <ul>
+                    <li>点击 "🖱️ 进入快捷模式" 按钮激活。</li>
+                    <li>激活后，在播放器区域内（非按钮上）：<strong>左键点击</strong> = 上一记录点, <strong>右键点击</strong> = 设置记录点。</li>
+                    <li>再次点击按钮退出该模式。</li>
+                </ul>
+            </p>
             <p>4. 进度条上会标记您的记录点 (●) 以及已精听的片段 (高亮区域)。</p>
-            <p>5. 完成整篇听力后，会有惊喜提示！</p>
-            <p>你也可以使用我们的<a href="/shortcut/index.html">快捷键版</a></p>
-            <p><em>注意: 快捷键选用 Ctrl+Shift+P/B 是为了尽量避免与浏览器默认快捷键冲突。</em></p>
+            <p>5. 完成整篇听力后，会有礼花庆祝！</p>
+            <p>你也可以使用我们的<a href="/index.html">原版</a></p>
         </section>
     </main>
 
