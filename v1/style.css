@@ -1,0 +1,281 @@
+/* --- 全局与基础样式 (基本不变) --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* 防止 header 在 flex 布局中被压缩 */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+h2 {
+    color: #3498db;
+    margin-top: 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* --- 主要布局改造：左右双栏 --- */
+main.main-container {
+    flex: 1; /* 占据剩余所有垂直空间 */
+    display: flex;
+    gap: 20px; /* 面板之间的间距 */
+    padding: 20px;
+    max-width: 1400px; /* 限制最大宽度，防止在超宽屏上过于分散 */
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.left-panel {
+    flex: 1; /* 左侧面板占据1份空间 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panel {
+    flex: 2.5; /* 右侧面板占据2.5份空间 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+#audio-manager {
+    flex: 1; /* 让列表区域填满左侧面板剩余空间 */
+}
+
+
+/* --- 左侧面板组件样式 --- */
+#audio-manager .upload-container {
+    margin-bottom: 15px;
+}
+
+.upload-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+}
+.upload-button:hover {
+    background-color: #2980b9;
+}
+
+#audio-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 50vh; /* 增加最大高度，超出则滚动 */
+    overflow-y: auto;
+}
+
+#audio-list li {
+    padding: 10px;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+    word-break: break-all;
+}
+
+#audio-list li:hover {
+    background-color: #dfe6e9;
+}
+
+#audio-list li.active {
+    background-color: #95a5a6;
+    color: white;
+    font-weight: bold;
+}
+
+#audio-list .delete-audio-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+#audio-list .delete-audio-btn:hover {
+    background-color: #c0392b;
+}
+
+.help-button-container {
+    margin-top: 20px; /* 与列表区隔开 */
+    flex-shrink: 0;
+}
+
+#show-help-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#show-help-btn:hover {
+    background-color: #16a085;
+}
+
+/* --- 右侧播放器样式 (与原版基本一致) --- */
+#player-section h2 {
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    word-break: break-all;
+}
+
+#audio-player-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#audio-player-container.shortcut-mode-active {
+    border: 2px dashed #e67e22;
+}
+
+#progress-bar-container { position: relative; width: 100%; margin-bottom: 10px; height: 20px; background-color: #e0e0e0; border-radius: 5px; }
+#seek-bar { width: 100%; cursor: pointer; position: relative; z-index: 10; margin: 0; -webkit-appearance: none; appearance: none; height: 100%; background: transparent; }
+#seek-bar::-webkit-slider-runnable-track { height: 100%; background: transparent; border-radius: 5px; }
+#seek-bar::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; background: #3498db; border-radius: 50%; cursor: pointer; margin-top: 2px; box-shadow: 0 0 2px rgba(0,0,0,0.5); }
+#seek-bar::-moz-range-track { height: 100%; background: transparent; border-radius: 5px; }
+#seek-bar::-moz-range-thumb { width: 16px; height: 16px; background: #3498db; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 0 2px rgba(0,0,0,0.5); }
+#seek-bar-tooltip { position: absolute; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 3px 6px; border-radius: 3px; font-size: 0.8em; pointer-events: none; display: none; transform: translateX(-50%); z-index: 20; bottom: 25px; }
+#bookmark-visualization-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; border-radius: 5px; overflow: hidden; }
+.bookmark-dot { position: absolute; width: 8px; height: 8px; background-color: #2c3e50; border-radius: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 6; }
+.listened-segment { position: absolute; height: 100%; background-color: #76c7c0; opacity: 0.7; z-index: 1; }
+#time-display { text-align: center; margin-bottom: 15px; font-size: 0.9em; color: #555; }
+#controls { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+#controls button { background-color: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em; transition: background-color 0.3s ease, box-shadow 0.3s ease; white-space: nowrap; }
+#controls button:hover { background-color: #2980b9; }
+#controls button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+#shortcut-mode-btn { background-color: #f39c12; min-width: 140px; }
+#shortcut-mode-btn.active { background-color: #e67e22; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+.volume-control-container { display: flex; align-items: center; }
+.volume-control-container span { margin-right: 5px; font-size: 1.2em; }
+#volume-control { width: 80px; cursor: pointer; }
+#completion-message { margin-top: 20px; padding: 15px; background-color: #2ecc71; color: white; text-align: center; border-radius: 5px; font-size: 1.1em; }
+
+
+/* --- 新增：帮助弹窗 (Modal) 样式 --- */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位，覆盖整个屏幕 */
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* 半透明黑色背景 */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal.show {
+    display: flex; /* 使用 flex 实现垂直居中 */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideIn 0.4s ease-out;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+.modal-content ul {
+    margin-top: 0.3em;
+    margin-bottom: 0.7em;
+    padding-left: 20px;
+}
+.modal-content p {
+    margin-bottom: 0.8em;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* --- 页脚样式 (基本不变) --- */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
